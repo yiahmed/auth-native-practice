@@ -1,0 +1,54 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.wordWrap": "on",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "todohighlight.isCaseSensitive": true,
+  "todohighlight.keywords": [
+    {
+      "text": "VIDEO",
+      "color": "#333",
+      "backgroundColor": "#3498db"
+    },
+    {
+      "text": "FIXME",
+      "color": "#333",
+      "backgroundColor": "#e67e22"
+    },
+    {
+      "text": "LEC",
+      "color": "#333",
+      "backgroundColor": "#f1c40f"
+    },
+    {
+      "text": "BUG",
+      "color": "#333",
+      "backgroundColor": "#e74c3c"
+    },
+    {
+      "text": "TODO",
+      "color": "#333",
+      "backgroundColor": "#2ecc71"
+    }
+  ],
+  "workbench.colorTheme": "Night Owl",
+  "window.zoomLevel": -1,
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "git.autofetch": true,
+  "tabnine.experimentalAutoImports": true,
+  "git.ignoreMissingGitWarning": true,
+  "[php]": {
+    "editor.defaultFormatter": "kokororin.vscode-phpfmt"
+  },
+  "workbench.colorCustomizations": {
+    "workbench.colorTheme": "Tokyo Night"
+  },
+  "workbench.preferredDarkColorTheme": "Tokyo Night"
+}
