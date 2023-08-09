@@ -11,6 +11,7 @@ import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import Page2 from "./screens/Page2";
 import Contacts from "./screens/Contacts";
+import axios from "axios";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,6 +49,16 @@ const TabNavigator = () => {
 
 export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    console.log("token: ", token);
+    console.log("authenticated: ", authenticated);
+    //set axios default headers to use the token as a bearer token
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+  }, [token, authenticated]);
 
   useEffect(() => {
     const unsubscribe = authentication.onAuthStateChanged((user) => {
@@ -63,7 +74,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      {authenticated ? <TabNavigator /> : <LoginScreen />}
+      {authenticated ? (
+        <TabNavigator />
+      ) : (
+        <LoginScreen setToken={setToken} setAuthenticated={setAuthenticated} />
+      )}
     </NavigationContainer>
   );
 }
