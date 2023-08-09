@@ -718,6 +718,7 @@ const styles = StyleSheet.create({
   customerNumberText: {
     fontSize: 12,
     color: "gray",
+    paddingTop: 5,
   },
   avatarContainer: {
     position: "relative",

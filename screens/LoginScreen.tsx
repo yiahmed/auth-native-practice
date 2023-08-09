@@ -13,6 +13,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigation } from "@react-navigation/core";
+import ripeTestImage from "./assets/ripeTest.png";
 
 // type Props = {};
 
@@ -50,84 +51,70 @@ const LoginScreen = () => {
     );
   };
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChange={(event) => setEmail(event.nativeEvent.text)}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.nativeEvent.text)}
-          style={styles.input}
-          secureTextEntry
-        />
-      </View>
+    <>
+      <KeyboardAvoidingView
+        className="bg-white flex-1 justify-center items-center"
+        behavior="padding"
+      >
+        <View>
+          {/* <Image
+            className="h-10 w-10"
+            source={require("./assets/ripeTest.png")}
+          /> */}
+        </View>
+        <View className="w-5/6 h-1/6 px-3">
+          <Text className="text-2xl font-medium pb-5">Welcome</Text>
+          <Text className="text-[#494A5C]">Sign in to RipeMetrics</Text>
+        </View>
+        <View className="w-5/6">
+          <TextInput
+            placeholder="Email Address"
+            value={email}
+            onChange={(event) => setEmail(event.nativeEvent.text)}
+            className="bg-white border-2 border-[#E9E9EC] px-3 py-4 rounded-lg mt-5"
+          />
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.nativeEvent.text)}
+            className="bg-white border-2 border-[#E9E9EC] px-3 py-4 rounded-lg mt-6"
+            secureTextEntry
+          />
+        </View>
+        <View className="w-5/6 h-10 flex-row justify-between items-end">
+          <Text className="text-[#FF7929]">Forgot your password?</Text>
+          <Text className="text-[#FF7929]">Create Account</Text>
+        </View>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={handleLogin} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        <View className="w-5/6 justify-center items-center mt-4">
+          <TouchableOpacity
+            onPress={handleLogin}
+            className="bg-[#FF7929] w-full p-4 rounded-lg items-center"
+          >
+            <Text className="text-white text-base">Sign in</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity
           onPress={handleRegister}
-          style={[styles.button, styles.buttonOutline]}
+          className="bg-white w-full p-4 mt-1 rounded-lg items-center border-2 border-[#0782F9]"
         >
-          <Text style={styles.buttonOutlineText}>Register</Text>
-        </TouchableOpacity>
-      </View>
-    </KeyboardAvoidingView>
+          <Text className="text-[#0782F9] font-bold text-base">Register</Text>
+        </TouchableOpacity> */}
+        </View>
+      </KeyboardAvoidingView>
+      <KeyboardAvoidingView className="bg-white">
+        <View className="flex-row w-full justify-between items-end">
+          <Text className="text-[#A5ACB7]">
+            © RipeMetrics 2023. All rights reserved.
+          </Text>
+          <View className="flex-row">
+            <Text>Privacy</Text>
+            <Text className="text-[#A5ACB7]"> and</Text>
+            <Text> Terms</Text>
+          </View>
+        </View>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  inputContainer: {
-    width: "80%",
-  },
-  input: {
-    backgroundColor: "white",
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    borderRadius: 10,
-    marginTop: 5,
-  },
-  buttonContainer: {
-    width: "60%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 40,
-  },
-  button: {
-    backgroundColor: "#0782F9",
-    width: "100%",
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  buttonOutline: {
-    backgroundColor: "white",
-    marginTop: 5,
-    borderColor: "#0782F9", // Add quotes around the color code
-    borderWidth: 2, // Add this property to set the width of the border
-    borderRadius: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-  buttonOutlineText: {
-    color: "#0782F9",
-    fontWeight: "700",
-    fontSize: 16,
-  },
-});

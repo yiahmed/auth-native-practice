@@ -26,7 +26,7 @@ const HomeScreen = (props: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
+      <Text className="text-xl">
         Email: {authentication.currentUser?.email}
       </Text>
       <TouchableOpacity style={styles.button} onPress={handleSignOut}>
