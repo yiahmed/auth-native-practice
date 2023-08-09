@@ -56,7 +56,7 @@ const LoginScreen = () => {
         className="bg-white flex-1 justify-center items-center"
         behavior="padding"
       >
-        <View className=" mb-6 w-full h-2 flex-row justify-center items-end self-start">
+        <View className=" mb-6 w-full h-24 flex-row justify-center items-end self-start">
           <Image
             style={{ height: 100, width: 350 }}
             source={require("../assets/ripeTest.png")}
@@ -102,7 +102,7 @@ const LoginScreen = () => {
         </View>
       </KeyboardAvoidingView>
       <KeyboardAvoidingView className="bg-white">
-        <View className="flex-row w-full justify-between items-end">
+        <View className="flex-row w-screen h-10 justify-between items-start">
           <Text className="text-[#A5ACB7]">
             © RipeMetrics 2023. All rights reserved.
           </Text>

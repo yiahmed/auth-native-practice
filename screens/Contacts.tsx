@@ -8,7 +8,6 @@ type Props = {};
 const Contacts = (props: Props) => {
   return (
     <View>
-      {/* <Text>Contacts</Text> */}
       <SwipeListItem />
     </View>
   );
