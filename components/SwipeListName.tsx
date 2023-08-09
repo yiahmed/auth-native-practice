@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Swipeable from "react-native-swipeable";
 import { Text, TouchableHighlight, StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import useAvatarColors from "./use-avatar-colors";
+import CustomerAssignedStatus from "./customer-assigned-status";
 
 interface Tag {
   tag_id: number;
@@ -568,49 +570,78 @@ const rightButtons = [
 ];
 
 const Avatar = ({ customer }: SwipeListItemProps) => {
+  const avatarColors = useAvatarColors(
+    customer.avg_spend_per_visit_for_store_range
+  );
+
   return (
-    <View style={styles.avatarContainer}>
-      <Text style={styles.avatarText}>
-        {customer.first_name?.slice(0, 1) ?? "N/"}
-        {customer.last_name?.slice(0, 1) ?? "A"}
+    <View
+      style={{
+        ...styles.avatarContainer,
+        backgroundColor: avatarColors.backgroundColor,
+      }}
+    >
+      <Text style={{ ...styles.avatarText, color: avatarColors.color }}>
+        {customer.first_name?.slice(0, 1) ?? ""}
+        {customer.last_name?.slice(0, 1) ?? "?"}
       </Text>
     </View>
   );
 };
 
 const max_length = 30;
-
 const truncatedText = (text: string, maxLength: number) => {
   return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 };
 
 function SwipeListItem({ customer }: SwipeListItemProps) {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isPressed, setIsPressed] = useState<boolean>(false);
+  const handlePressIn = () => {
+    setIsPressed(true);
+  };
+
+  const handlePressOut = () => {
+    setIsPressed(false);
+  };
+
+  const backgroundColor = isPressed ? "#FFEED5" : "white";
+
   return (
     <Swipeable
-      style={styles.container}
+      style={{ ...styles.container, backgroundColor }}
       leftButtons={leftButtons}
       rightButtons={rightButtons}
-      // leftActionActivationDistance={10}
     >
-      <View style={styles.content}>
-        <View style={styles.test}>
-          <Avatar customer={customer} />
+      <TouchableHighlight
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        style={{ flex: 1 }}
+        underlayColor="transparent"
+      >
+        <View style={styles.itemContainer}>
+          <View style={styles.content}>
+            <View style={styles.test}>
+              <Avatar customer={customer} />
+            </View>
+            <View style={styles.nameContainer}>
+              <Text style={styles.nameText}>
+                {customer.first_name && customer.last_name
+                  ? `${customer.first_name} ${customer.last_name}`
+                  : customer.mobile
+                  ? `${customer.mobile}`
+                  : `${customer.email}`}
+              </Text>
+              <Text style={styles.customerNumberText}>
+                {" "}
+                {truncatedText(customer.most_recent_message_body, max_length)}
+              </Text>
+            </View>
+          </View>
+
+          {/* <CustomerAssignedStatus customer={customer} isLoading={isLoading} /> */}
         </View>
-        <View style={styles.nameContainer}>
-          <Text style={styles.nameText}>
-            {customer.first_name && customer.last_name
-              ? `${customer.first_name} ${customer.last_name}`
-              : customer.mobile
-              ? `${customer.mobile}`
-              : `${customer.email}`}
-          </Text>
-          <Text style={styles.customerNumberText}>
-            {" "}
-            Mobile:{" "}
-            {truncatedText(customer.most_recent_message_body, max_length)}
-          </Text>
-        </View>
-      </View>
+      </TouchableHighlight>
     </Swipeable>
   );
 }
@@ -636,10 +667,17 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: "white",
-    borderColor: "#F97315",
-    borderWidth: 3,
+    borderColor: "#E4E7EB",
+    borderWidth: 1,
     height: 120,
     width: "100%",
+  },
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 12,
   },
   content: {
     flex: 1,
