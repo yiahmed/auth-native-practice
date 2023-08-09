@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import { authentication } from "../firebase";
 import {
@@ -13,7 +14,6 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigation } from "@react-navigation/core";
-import ripeTestImage from "./assets/ripeTest.png";
 
 // type Props = {};
 
@@ -56,11 +56,11 @@ const LoginScreen = () => {
         className="bg-white flex-1 justify-center items-center"
         behavior="padding"
       >
-        <View>
-          {/* <Image
-            className="h-10 w-10"
-            source={require("./assets/ripeTest.png")}
-          /> */}
+        <View className=" mb-6 w-full h-2 flex-row justify-center items-end self-start">
+          <Image
+            style={{ height: 100, width: 350 }}
+            source={require("../assets/ripeTest.png")}
+          />
         </View>
         <View className="w-5/6 h-1/6 px-3">
           <Text className="text-2xl font-medium pb-5">Welcome</Text>
