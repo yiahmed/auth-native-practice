@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import useStatusStyles from "./use-avatar-colors";
 
 interface Tag {
   tag_id: number;
@@ -44,15 +45,15 @@ const STATUS_STYLES = {
   },
   Pending: {
     backgroundColor: "yellow",
-    color: "yellow",
+    color: "white",
   },
   "High Priority": {
-    backgroundColor: "orange",
-    color: "orange",
+    backgroundColor: "#F04444",
+    color: "white",
   },
   Resolved: {
     backgroundColor: "green",
-    color: "green",
+    color: "white",
   },
 };
 
@@ -73,7 +74,6 @@ const CustomerAssignedStatus = ({
   isLoading,
 }: CustomerAssignedStatusProps) => {
   const currentStatusName = getCustomerStatus(customer);
-
   const statusStyle =
     STATUS_STYLES[currentStatusName as keyof typeof STATUS_STYLES] || {};
 
@@ -84,7 +84,7 @@ const CustomerAssignedStatus = ({
           style={[
             styles.statusContainer,
             statusStyle,
-            !isLoading && styles.animatePulse,
+            { backgroundColor: statusStyle.backgroundColor || "transparent" },
           ]}
         >
           <View

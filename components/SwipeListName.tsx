@@ -606,6 +606,19 @@ function SwipeListItem({ customer }: SwipeListItemProps) {
   };
 
   const backgroundColor = isPressed ? "#FFEED5" : "white";
+  const recentActivityDate = new Date(customer.recent_activity_at);
+  const dayOfWeek = recentActivityDate.toLocaleString("en-US", {
+    weekday: "short",
+  });
+  const month = recentActivityDate.toLocaleString("en-US", { month: "short" });
+  const day = recentActivityDate.getDate();
+  const hour = recentActivityDate.getHours();
+  const minute = recentActivityDate.getMinutes();
+  const ampm = hour >= 12 ? "PM" : "AM";
+
+  // Convert to 12-hour format
+  const formattedHour = hour % 12 || 12;
+  const formattedMinute = minute.toString().padStart(2, "0");
 
   return (
     <Swipeable
@@ -638,8 +651,12 @@ function SwipeListItem({ customer }: SwipeListItemProps) {
               </Text>
             </View>
           </View>
-
-          {/* <CustomerAssignedStatus customer={customer} isLoading={isLoading} /> */}
+          <View>
+            <Text style={styles.recentActivityText}>
+              {`${month} ${day}, ${formattedHour}:${formattedMinute} ${ampm}`}
+            </Text>
+            <CustomerAssignedStatus customer={customer} isLoading={isLoading} />
+          </View>
         </View>
       </TouchableHighlight>
     </Swipeable>
@@ -677,18 +694,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
+    height: "100%",
     paddingHorizontal: 12,
+    // borderWidth: 1,
+    // borderColor: "red",
   },
   content: {
     flex: 1,
     padding: 16,
-    width: "100%",
     flexDirection: "row",
     alignItems: "center",
   },
   nameContainer: {
     flexDirection: "column",
-    alignItems: "left",
+    alignItems: "flex-start",
+    marginLeft: 20,
   },
   nameText: {
     fontSize: 18,
@@ -698,6 +718,7 @@ const styles = StyleSheet.create({
   customerNumberText: {
     fontSize: 12,
     color: "gray",
+    paddingTop: 5,
   },
   avatarContainer: {
     position: "relative",
@@ -716,5 +737,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#fff",
     fontWeight: "800",
+  },
+  recentActivityText: {
+    paddingBottom: 5,
   },
 });
