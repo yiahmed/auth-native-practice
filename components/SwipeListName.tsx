@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swipeable from "react-native-swipeable";
 import { Text, TouchableHighlight, StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import useAvatarColors from "./use-avatar-colors";
 import CustomerAssignedStatus from "./customer-assigned-status";
+import axios from "axios";
 
 interface Tag {
   tag_id: number;
@@ -664,11 +665,19 @@ function SwipeListItem({ customer }: SwipeListItemProps) {
 }
 
 function SwipeableList() {
+  const [newCustomers, setNewCustomers] = useState<Customer[]>([]);
+  useEffect(() => {
+    axios.get("https://api.rmdevs.com/api/v2/customers").then((res) => {
+      setNewCustomers(res.data.data);
+    });
+    console.log("newCustomers", newCustomers);
+  }, [newCustomers]);
   return (
     <ScrollView>
-      {customers.map((customer) => (
-        <SwipeListItem key={customer.id} customer={customer} />
-      ))}
+      {newCustomers &&
+        newCustomers?.map((customer) => (
+          <SwipeListItem key={customer.id} customer={customer} />
+        ))}
     </ScrollView>
   );
 }
