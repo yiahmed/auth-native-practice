@@ -18,6 +18,7 @@ import {
 import { useNavigation } from "@react-navigation/core";
 import { LinearGradient } from "expo-linear-gradient";
 import CheckBox from "../components/checkBox";
+import { set } from "react-native-reanimated";
 
 type Props = {
   setToken: (token: string) => void;
