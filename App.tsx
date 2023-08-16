@@ -12,6 +12,8 @@ import HomeScreen from "./screens/HomeScreen";
 import Page2 from "./screens/Page2";
 import Contacts from "./screens/Contacts";
 import axios from "axios";
+import { Provider } from "react-redux";
+import { store } from "./components/shared/store";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,15 +21,15 @@ const Tab = createBottomTabNavigator();
 function StackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
+      {/* <Stack.Screen
         options={{ headerShown: false }}
         name="Login"
         component={LoginScreen}
-      />
+      /> */}
       <Stack.Screen
         options={{ headerShown: false }}
         name="Home"
-        component={HomeScreen}
+        component={Contacts}
       />
     </Stack.Navigator>
   );
@@ -36,12 +38,7 @@ function StackNavigator() {
 const TabNavigator = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen
-        options={{ headerShown: false }}
-        name="Home"
-        component={StackNavigator}
-      />
-      <Tab.Screen name="Contacts" component={Contacts} />
+      <Tab.Screen name="Home" component={StackNavigator} />
       <Tab.Screen name="Page2" component={Page2} />
     </Tab.Navigator>
   );
@@ -72,13 +69,18 @@ export default function App() {
   }, []);
 
   return (
-    <NavigationContainer>
-      <StatusBar style="auto" />
-      {authenticated ? (
-        <TabNavigator />
-      ) : (
-        <LoginScreen setToken={setToken} setAuthenticated={setAuthenticated} />
-      )}
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        {authenticated ? (
+          <TabNavigator />
+        ) : (
+          <LoginScreen
+            setToken={setToken}
+            setAuthenticated={setAuthenticated}
+          />
+        )}
+      </NavigationContainer>
+    </Provider>
   );
 }
