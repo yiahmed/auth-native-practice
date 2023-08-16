@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-
 import {
   increment,
   decrement,
-} from "../components/shared/features/counter/countAction";
-import { store } from "../components/shared/store";
+} from "../components/shared/features/counter/counterSlice";
 
 export default function Page2() {
   const dispatch = useDispatch();
 
-  const count = useSelector((store) => store.count.count);
+  const count = useSelector((store) => store.count.value);
 
   const handleIncreament = () => {
     dispatch(increment());
@@ -32,7 +30,7 @@ export default function Page2() {
 
       <TouchableOpacity
         onPress={handleDecreament}
-        style={{ ...styles.btn, backgroundColor: "#6e3b3b" }}
+        style={{ ...styles.btn, backgroundColor: "red" }}
       >
         <Text style={styles.btn_text}> Decrement </Text>
       </TouchableOpacity>
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   btn: {
-    backgroundColor: "#086972",
+    backgroundColor: "green",
     padding: 10,
     margin: 10,
     borderRadius: 10,
