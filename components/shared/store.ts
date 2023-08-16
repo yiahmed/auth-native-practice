@@ -1,8 +1,19 @@
-import { createStore, combineReducers } from "redux";
-import CountReducer from "./features/counter/counterReducer";
+import CountReducer from "./features/counter/counterSlice";
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 
-const rootReducer = combineReducers({
-  count: CountReducer,
+export const store = configureStore({
+  reducer: {
+    count: CountReducer,
+  },
 });
 
-export const store = createStore(rootReducer);
+export type AppDispatch = typeof store.dispatch;
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type Appthunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
