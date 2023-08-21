@@ -20,7 +20,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import CheckBox from "../components/checkBox";
 import { set } from "react-native-reanimated";
 
-type Props = {
+export type Props = {
   setToken: (token: string) => void;
   setAuthenticated: (authenticated: boolean) => void;
 };
@@ -84,22 +84,22 @@ const LoginScreen = (props: Props) => {
   return (
     <>
       <KeyboardAvoidingView
-        className="bg-white flex-1 justify-center items-center"
+        className="items-center justify-center flex-1 bg-white"
         behavior="padding"
       >
         <LinearGradient
-          className="flex-1 justify-center items-center w-full h-full"
+          className="items-center justify-center flex-1 w-full h-full"
           colors={["#F97315", "white"]}
           locations={[0.05, 0.7]}
         >
-          <View className=" mb-6 w-full h-24 flex-row justify-center items-end self-start">
+          <View className="flex-row items-end self-start justify-center w-full h-24 mb-6 ">
             <Image
               style={{ height: 100, width: 350 }}
               source={require("../assets/ripeTest.png")}
             />
           </View>
-          {/* <View className="w-5/6 h-1/6 px-3">
-            <Text className="text-2xl font-medium pb-5">Welcome</Text>
+          {/* <View className="w-5/6 px-3 h-1/6">
+            <Text className="pb-5 text-2xl font-medium">Welcome</Text>
             <Text className="text-[#494A5C]">Sign in to RipeMetrics</Text>
           </View> */}
           <View className="w-5/6 py-2">
@@ -117,23 +117,23 @@ const LoginScreen = (props: Props) => {
               secureTextEntry
             />
           </View>
-          {/* <View className="flex-row w-5/6 justify-start items-center border-2 border-red-500">
+          {/* <View className="flex-row items-center justify-start w-5/6 border-2 border-red-500">
             <Text>Remember me?</Text>
             <CheckBox />
           </View> */}
-          <View className="w-5/6 h-10 flex-row justify-between items-end my-2">
+          <View className="flex-row items-end justify-between w-5/6 h-10 my-2">
             <Text className="text-[#FF7929]">Forgot your password?</Text>
             <TouchableOpacity onPress={handleRegister}>
               <Text className="text-[#FF7929]">Create Account</Text>
             </TouchableOpacity>
           </View>
 
-          <View className="w-5/6 justify-center items-center mt-4">
+          <View className="items-center justify-center w-5/6 mt-4">
             <TouchableOpacity
               onPress={handleLogin}
               className="bg-[#FF7929] w-full p-4 rounded-lg items-center"
             >
-              <Text className="text-white text-base">Sign in</Text>
+              <Text className="text-base text-white">Sign in</Text>
             </TouchableOpacity>
             {/* <TouchableOpacity
           onPress={handleRegister}
@@ -145,7 +145,7 @@ const LoginScreen = (props: Props) => {
         </LinearGradient>
       </KeyboardAvoidingView>
       <KeyboardAvoidingView className="bg-white">
-        <View className="flex-column w-screen h-8 mb-5 justify-between items-center">
+        <View className="items-center justify-between w-screen h-8 mb-5 flex-column">
           <Text className="text-[#A5ACB7]">
             © RipeMetrics 2023. All rights reserved.
           </Text>

@@ -8,7 +8,7 @@ import counterReducer from "../components/shared/features/counter/counterSlice";
 import { RootState } from "../components/shared/store";
 
 describe("counterSlice", () => {
-  let store;
+  let store: ReturnType<typeof configureStore>;
 
   beforeEach(() => {
     store = configureStore({
@@ -19,20 +19,20 @@ describe("counterSlice", () => {
   });
 
   it("should handle initial state", () => {
-    const initialState: RootState = store.getState();
+    const initialState = store.getState() as RootState;
     expect(initialState.count.value).toBe(0);
     expect(initialState.count.status).toBe("idle");
   });
 
   it("should handle increment", () => {
     store.dispatch(increment());
-    const state: RootState = store.getState();
+    const state = store.getState() as RootState;
     expect(state.count.value).toBe(1);
   });
 
   it("should handle decrement", () => {
     store.dispatch(decrement());
-    const state: RootState = store.getState();
+    const state = store.getState() as RootState;
     expect(state.count.value).toBe(-1);
   });
 });
