@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import LoginScreen, { Props } from "../screens/LoginScreen";
+import { LoginScreen, Props } from "../screens/LoginScreen";
 
 // describe("<LoginScreen />", () => {
 //   it("should render the login screen without errors", async () => {
@@ -19,7 +19,8 @@ import LoginScreen, { Props } from "../screens/LoginScreen";
 //       return;
 //     },
 //   };
-//   return render(<LoginScreen {...defaultProps} {...props} />);
+//   const loginScreen = render(<LoginScreen {...defaultProps} {...props} />);
+//   return loginScreen
 // }
 
 describe("<LoginScreen />", () => {
@@ -32,6 +33,6 @@ describe("<LoginScreen />", () => {
         return;
       },
     };
-    render(<LoginScreen {...defaultProps} />);
+    return render(<LoginScreen {...defaultProps} />);
   });
 });

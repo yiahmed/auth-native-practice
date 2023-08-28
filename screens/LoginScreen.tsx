@@ -25,7 +25,7 @@ export type Props = {
   setAuthenticated: (authenticated: boolean) => void;
 };
 
-const LoginScreen = (props: Props) => {
+export const LoginScreen = (props: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -160,5 +160,3 @@ const LoginScreen = (props: Props) => {
     </>
   );
 };
-
-export default LoginScreen;

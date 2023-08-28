@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { authentication } from "./firebase";
 import { useNavigation } from "@react-navigation/core";
-import LoginScreen from "./screens/LoginScreen";
+import { LoginScreen } from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
 import Page2 from "./screens/Page2";
 import Contacts from "./screens/Contacts";

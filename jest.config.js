@@ -1,7 +1,22 @@
 module.exports = {
-  preset: "ts-jest",
+  preset: "jest-expo",
   transform: {
-    "^.+\\.(ts|tsx)?$": "ts-jest",
-    "^.+\\.(js|jsx)$": "babel-jest",
+    "^.+\\.(js|jsx|ts|tsx)$": "ts-jest",
   },
+  globals: {
+    "ts-jest": {
+      transformerConfig: {
+        transformIgnorePatterns: [
+          "<rootDir>/node_modules/(react-clone-referenced-element|@react-native-community|react-navigation|@react-navigation/.*|@unimodules/.*|native-base|react-native-code-push)",
+          "jest-runner",
+        ],
+      },
+    },
+  },
+  testPathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/.maestro/",
+    "@react-native",
+  ],
+  testEnvironment: "react-native",
 };
